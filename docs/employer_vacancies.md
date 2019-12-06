@@ -43,73 +43,45 @@
 {
     "items": [
         {
-            "name": "Бесплатная",
-            "description": "Вакансия размещается на 30 дней; только для подтвержденных работодателей; этот тип вакансий доступен везде, кроме городов России.",
-            "publications_count": 10,
-            "can_publish": true,
-            "has_publications_employer": true,
-            "has_publications_manager": true,
-            "publication_areas_url": "https://api.hh.ru/areas?exclude=113&vacancy_publication_flag=true",
-            "impossibility_reason": null,
-            "vacancy_billing_type": {
-                "id": "free"
-            },
-            "vacancy_type": {
-                "id": "open"
-            }
-            
-        },
-        {
             "name": "Стандарт: без обновления, закрытая",
             "description": "Автоматически поднимается в поисковой выдаче вакансий каждые 3 дня; размещается на 30 дней. Вакансия видна только приглашенным кандидатам. Такую вакансию нельзя будет найти через поиск и увидеть неприглашенным кандидатам",
-            "publications_count": 10,
+            "available_publications_count": 21,
             "can_publish": true,
             "has_publications_employer": true,
             "has_publications_manager": true,
-            "publication_areas_url": "https://api.hh.ru/areas?exclude=1,2&vacancy_publication_flag=true",
-            "impossibility_reason": null,
             "vacancy_billing_type": {
                 "id": "standart"
             },
             "vacancy_type": {
                 "id": "closed"
-            }
-            
+            },
+            "publications": [
+                {
+                    "name": "Москва и Московская область",
+                    "count": 10,
+                    "areas_url": "https://api.hh.ru/areas?include=1,2019&vacancy_publication_flag=true"
+                },
+                {
+                    "name": "В любом регионе",
+                    "count": 11,
+                    "areas_url": "https://api.hh.ru/areas?exclude=57,59&vacancy_publication_flag=true"
+                }
+            ]
         },
         {
             "name": "Премиум: неделя в топе",
             "description": "Первые 7 дней публикация выделена цветом, брендирована логотипом вашей компании и находится вверху поисковой выдачи; вакансия отправляется в рассылке подходящим соискателям; размещается на 30 дней.",
-            "publications_count": 0,
+            "available_publications_count": 0,
             "can_publish": false,
             "has_publications_employer": true,
             "has_publications_manager": false,
-            "publication_areas_url": "https://api.hh.ru/areas?include=1,2&vacancy_publication_flag=true",
-            "impossibility_reason": {
-                "code": "quotas_exceed",
-                "message": "У вас закончились квоты на вакансии этого типа. Обратитесь к администратору вашей компании."
-            },
             "vacancy_billing_type": {
                 "id": "free"
             },
             "vacancy_type": {
                 "id": "open"
-            }
-        },
-        {
-            "name": "Стандарт: без обновления, открытая",
-            "description": "Вакансия размещается на 30 дней.",
-            "publications_count": 247,
-            "can_publish": true,
-            "has_publications_employer": true,
-            "has_publications_manager": true,
-            "publication_areas_url": "https://api.hh.ru/areas?include=1,2&vacancy_publication_flag=true",
-            "impossibility_reason": null,
-            "vacancy_billing_type": {
-                "id": "free"
             },
-            "vacancy_type": {
-                "id": "open"
-            }
+            "publications": []
         }
     ]
 }
@@ -122,16 +94,16 @@
 --- | --- | --------
 name | string | Название типа публикации
 description | string | Описание
-publications_count | number | Количество публикаций, доступных данному менеджеру
+available_publications_count | number | Общее количество публикаций, доступных данному менеджеру. Равняется минимуму из суммы `publications[].count` и квот выставленных для менеджера
 can_publish | boolean | Можно ли использовать данный тип публикации
 has_publications_employer | boolean | Есть ли у работодателя доступные публикации данного типа
-has_publications_manager | boolean | Есть ли на счету у менеджера доступные публикации данного типа
-impossibility_reason | object или null | Причина невозможности использования данного типа
-impossibility_reason.code | string | Код причины невозможности использования данного типа
-impossibility_reason.message | string | Информация для пользователя о причине невозможности
-publication_areas_url | string | URL на список регионов, в которых можно опубликовать вакансию данного типа. Список возвращается в древовидной структуре и публикация вакансий возможна только в конечных (листовых) узлах дерева. Они помечеты флагом `can_publish=true`  
+has_publications_manager | boolean | Есть ли на счету у менеджера доступные публикации данного типа  
 vacancy_billing_type.id | string | Биллинговый тип [из справочника vacancy_billing_type](dictionaries.md).
 vacancy_type.id | string | Тип вакансии [из справочника vacancy_type](dictionaries.md)
+publications | object| Список услуг для данного типа публикации
+publications[].name | string | Название услуги в рамках данного типа публикации 
+publications[].count | number | Количество доступных публикаций для данной услуги
+publications[].areas_url | string | URL на список регионов, в которых можно опубликовать вакансию данного типа. Список возвращается в древовидной структуре и публикация вакансий возможна только в конечных (листовых) узлах дерева. Они помечеты флагом `can_publish=true`
 
 Значения `vacancy_billing_type.id` и `vacancy_type.id` соответствуют параметрам `billing_type` и `type` при публикации вакансии 
 
