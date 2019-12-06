@@ -32,7 +32,7 @@
 
 * `employer_id` - идентификатор работодателя, который можно узнать в 
 [информации о текущем пользователе](me.md#employer-info).
-* `manager_id` - идентификатор менеджера.
+* `manager_id` - идентификатор менеджера. Можно узнать в [информации о текущем пользователе](me.md#manager-info).
 
 ### Ответ
 
@@ -94,15 +94,15 @@
 --- | --- | --------
 name | string | Название типа публикации
 description | string | Описание
-available_publications_count | number | Общее количество публикаций, доступных данному менеджеру. Равняется минимуму из суммы `publications[].count` и квот выставленных для менеджера
+available_publications_count | number | Общее количество публикаций, доступных данному менеджеру. Равняется сумме `publications[].count` или значению, выставленному в квотах, если оно меньше
 can_publish | boolean | Можно ли использовать данный тип публикации
 has_publications_employer | boolean | Есть ли у работодателя доступные публикации данного типа
 has_publications_manager | boolean | Есть ли на счету у менеджера доступные публикации данного типа  
 vacancy_billing_type.id | string | Биллинговый тип [из справочника vacancy_billing_type](dictionaries.md).
 vacancy_type.id | string | Тип вакансии [из справочника vacancy_type](dictionaries.md)
-publications | object| Список услуг для данного типа публикации
-publications[].name | string | Название услуги в рамках данного типа публикации 
-publications[].count | number | Количество доступных публикаций для данной услуги
+publications | object| Список регионов, где может быть опубликована вакансия и доступное количество публикаций 
+publications[].name | string | Название региона
+publications[].count | number | Количество доступных публикаций в регионе
 publications[].areas_url | string | URL на список регионов, в которых можно опубликовать вакансию данного типа. Список возвращается в древовидной структуре и публикация вакансий возможна только в конечных (листовых) узлах дерева. Они помечеты флагом `can_publish=true`
 
 Значения `vacancy_billing_type.id` и `vacancy_type.id` соответствуют параметрам `billing_type` и `type` при публикации вакансии 
