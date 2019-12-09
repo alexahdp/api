@@ -97,9 +97,9 @@ name | string | Название типа публикации
 description | string | Описание
 available_publications_count | number | Общее количество публикаций, доступных данному менеджеру. Равняется сумме `publications[].count` или значению, выставленному в квотах, если оно меньше
 vacancy_billing_type.id | string | Биллинговый тип [из справочника vacancy_billing_type](dictionaries.md).
-vacancy_types | object | Список типов вакансии
+vacancy_types | array | Список типов вакансии
 vacancy_types[].id | string | Тип вакансии [из справочника vacancy_type](dictionaries.md)
-publications | object | Список регионов, где может быть опубликована вакансия и количество публикаций, доступных работодателю 
+publications | array | Список регионов, где может быть опубликована вакансия и количество публикаций, доступных работодателю 
 publications[].name | string | Название региона
 publications[].count | number | Количество публикаций в регионе, доступных работодателю
 publications[].areas_url | string | URL на список регионов, в которых можно опубликовать вакансию данного типа. Список возвращается в древовидной структуре и публикация вакансий возможна только в конечных (листовых) узлах дерева. Они помечеты флагом `can_publish=true`
