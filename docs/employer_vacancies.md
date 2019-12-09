@@ -46,15 +46,17 @@
             "name": "Стандарт: без обновления, закрытая",
             "description": "Автоматически поднимается в поисковой выдаче вакансий каждые 3 дня; размещается на 30 дней. Вакансия видна только приглашенным кандидатам. Такую вакансию нельзя будет найти через поиск и увидеть неприглашенным кандидатам",
             "available_publications_count": 21,
-            "can_publish": true,
-            "has_publications_employer": true,
-            "has_publications_manager": true,
             "vacancy_billing_type": {
                 "id": "standart"
             },
-            "vacancy_type": {
-                "id": "closed"
-            },
+            "vacancy_types": [
+                {
+                    "id": "closed"
+                },
+                {
+                    "id": "open"
+                }
+            ],
             "publications": [
                 {
                     "name": "Москва и Московская область",
@@ -72,15 +74,14 @@
             "name": "Премиум: неделя в топе",
             "description": "Первые 7 дней публикация выделена цветом, брендирована логотипом вашей компании и находится вверху поисковой выдачи; вакансия отправляется в рассылке подходящим соискателям; размещается на 30 дней.",
             "available_publications_count": 0,
-            "can_publish": false,
-            "has_publications_employer": true,
-            "has_publications_manager": false,
             "vacancy_billing_type": {
                 "id": "free"
             },
-            "vacancy_type": {
-                "id": "open"
-            },
+            "vacancy_types": [
+                {
+                    "id": "open"
+                }
+            ],
             "publications": []
         }
     ]
@@ -95,14 +96,12 @@
 name | string | Название типа публикации
 description | string | Описание
 available_publications_count | number | Общее количество публикаций, доступных данному менеджеру. Равняется сумме `publications[].count` или значению, выставленному в квотах, если оно меньше
-can_publish | boolean | Можно ли использовать данный тип публикации
-has_publications_employer | boolean | Есть ли у работодателя доступные публикации данного типа
-has_publications_manager | boolean | Есть ли на счету у менеджера доступные публикации данного типа  
 vacancy_billing_type.id | string | Биллинговый тип [из справочника vacancy_billing_type](dictionaries.md).
-vacancy_type.id | string | Тип вакансии [из справочника vacancy_type](dictionaries.md)
-publications | object| Список регионов, где может быть опубликована вакансия и доступное количество публикаций 
+vacancy_types | object | Список типов вакансии
+vacancy_types[].id | string | Тип вакансии [из справочника vacancy_type](dictionaries.md)
+publications | object | Список регионов, где может быть опубликована вакансия и количество публикаций, доступных работодателю 
 publications[].name | string | Название региона
-publications[].count | number | Количество доступных публикаций в регионе
+publications[].count | number | Количество публикаций в регионе, доступных работодателю
 publications[].areas_url | string | URL на список регионов, в которых можно опубликовать вакансию данного типа. Список возвращается в древовидной структуре и публикация вакансий возможна только в конечных (листовых) узлах дерева. Они помечеты флагом `can_publish=true`
 
 Значения `vacancy_billing_type.id` и `vacancy_type.id` соответствуют параметрам `billing_type` и `type` при публикации вакансии 
