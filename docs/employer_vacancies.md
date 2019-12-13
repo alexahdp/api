@@ -43,7 +43,7 @@
 {
     "items": [
         {
-            "name": "Стандарт: без обновления, закрытая",
+            "name": "Стандарт: без обновления",
             "description": "Автоматически поднимается в поисковой выдаче вакансий каждые 3 дня; размещается на 30 дней. Вакансия видна только приглашенным кандидатам. Такую вакансию нельзя будет найти через поиск и увидеть неприглашенным кандидатам",
             "available_publications_count": 21,
             "vacancy_billing_type": {
@@ -61,12 +61,12 @@
                 {
                     "name": "Москва и Московская область",
                     "count": 10,
-                    "areas_url": "https://api.hh.ru/areas?include=1,2019&vacancy_publication_flag=true"
+                    "areas_url": "https://api.hh.ru/areas?price_region_id=1000224&vacancy_publication_flag=true"
                 },
                 {
                     "name": "В любом регионе",
                     "count": 11,
-                    "areas_url": "https://api.hh.ru/areas?exclude=57,59&vacancy_publication_flag=true"
+                    "areas_url": "https://api.hh.ru/areas?vacancy_publication_flag=true"
                 }
             ]
         },
